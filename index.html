@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0e14">
+  <meta name="description" content="Explore a curated collection of photography in a modern, interactive image gallery.">
+  <title>FrameSpace | Image Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to day mode" aria-pressed="false">
+      <span id="theme-icon" aria-hidden="true">☀</span><span id="theme-label">Day mode</span>
+    </button>
+    <a href="#" class="brand" aria-label="FrameSpace home"><span class="brand-icon">F</span><span>Frame<span class="accent">Space</span></span></a>
+    <a href="#gallery" class="header-link">Explore Gallery <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-badge"><span class="status-dot"></span>A WORLD THROUGH THE LENS</div>
+      <h1>Every picture<br>tells a <span>story.</span></h1>
+      <p class="hero-description">Discover beautiful moments, extraordinary places, and creative perspectives in one curated collection.</p>
+      <a href="#gallery" class="primary-button">Explore the collection <span>↓</span></a>
+      <div class="hero-stats">
+        <div><strong id="total-count">0</strong><span>PHOTOGRAPHS</span></div>
+        <div><strong id="category-count">5</strong><span>CATEGORIES</span></div>
+        <div><strong>∞</strong><span>INSPIRATION</span></div>
+      </div>
+    </section>
+
+    <section class="gallery-section" id="gallery">
+      <div class="section-heading">
+        <div><span class="eyebrow">THE COLLECTION</span><h2>Explore the gallery<span>.</span></h2><p>Find a moment that catches your eye.</p></div>
+      </div>
+      <div class="toolbar">
+        <label class="search-box"><span aria-hidden="true">⌕</span><input type="search" id="search-input" placeholder="Search photographs, titles or tags..." aria-label="Search photographs"><kbd>/</kbd></label>
+        <label class="sort-control"><span class="sr-only">Sort photographs</span><select id="sort-select"><option value="default">Featured</option><option value="az">Title: A–Z</option><option value="za">Title: Z–A</option></select></label>
+      </div>
+      <div class="filter-list" id="filter-list" aria-label="Filter by category">
+        <button class="filter-button active" data-category="all" aria-pressed="true">All photos</button>
+        <button class="filter-button" data-category="animals" aria-pressed="false">Animals</button>
+        <button class="filter-button" data-category="nature" aria-pressed="false">Nature</button>
+        <button class="filter-button" data-category="portraits" aria-pressed="false">Portraits</button>
+        <button class="filter-button" data-category="architecture" aria-pressed="false">Architecture</button>
+        <button class="filter-button" data-category="abstract" aria-pressed="false">Abstract</button>
+      </div>
+      <div class="feature-actions" aria-label="Gallery actions">
+        <button class="utility-button" id="favorites-filter" type="button" aria-pressed="false">♡ Favorites <span id="favorite-count">0</span></button>
+        <button class="utility-button" id="random-button" type="button">✦ Discover random</button>
+        <button class="utility-button" id="slideshow-button" type="button" aria-pressed="false">▶ Start slideshow</button>
+      </div>
+      <div class="results-row"><p id="results-count" aria-live="polite">Loading photographs...</p><span class="live-label"><span class="status-dot"></span> CURATED VISUALS</span></div>
+      <div class="gallery-grid" id="gallery-grid" aria-busy="true"></div>
+      <div class="empty-state" id="empty-state" hidden><span class="empty-icon">⌕</span><h3>No photographs found</h3><p>Try another search term or choose a different category.</p><button id="reset-button" class="primary-button" type="button">Reset filters</button></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a href="#" class="brand footer-brand"><span class="brand-icon">F</span><span>Frame<span class="accent">Space</span></span></a>
+    <p>A little world of visual inspiration.</p>
+    <span class="copyright">Designed with care · <span id="current-year"></span></span>
+  </footer>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photograph viewer" aria-hidden="true" hidden>
+    <div class="lightbox-top"><span class="viewer-counter" id="viewer-counter">01 / 01</span><div class="viewer-top-actions"><button class="icon-button" id="share-image" type="button" aria-label="Share photograph" title="Share photograph">↗</button><button class="icon-button close-button" id="close-lightbox" type="button" aria-label="Close viewer" title="Close (Esc)">✕</button></div></div>
+    <button class="viewer-arrow previous-button" id="previous-image" type="button" aria-label="Previous photograph" title="Previous (←)">‹</button>
+    <figure class="lightbox-figure">
+      <div class="viewer-image-wrap"><span class="image-loading" id="viewer-loading">Loading image…</span><img id="lightbox-image" src="" alt=""></div>
+      <figcaption class="lightbox-caption">
+        <div><span class="eyebrow" id="lightbox-category">CATEGORY</span><h2 id="lightbox-title">Photograph title</h2><p id="lightbox-description"></p><div class="tag-list" id="lightbox-tags"></div></div>
+        <div class="viewer-actions"><button class="utility-button" id="viewer-favorite" type="button">♡ Save</button><a id="download-image" class="download-button" href="#" target="_blank" rel="noopener" download>↓ <span>Download</span></a></div>
+      </figcaption>
+      <div class="related-block"><h3>Related photographs</h3><div id="related-images" class="related-images"></div></div>
+    </figure>
+    <button class="viewer-arrow next-button" id="next-image" type="button" aria-label="Next photograph" title="Next (→)">›</button>
+    <p class="viewer-hint">Use ← → to navigate · Space to pause slideshow · ESC to close</p>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
